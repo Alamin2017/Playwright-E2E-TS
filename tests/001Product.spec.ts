@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 import { faker } from '@faker-js/faker';
 const randomEmail = faker.internet.email();
-import { PageObject1 } from '../pageobject/PageObject';
+import { PageObject } from '../pageobject/PageObject';
 
 test.beforeEach(async({page}) => {
   await page.goto('https://automationexercise.com/');
@@ -12,7 +12,7 @@ test.afterEach(async ({page})=>{
   await page.close();
 });
 test('Add Product E2E Test1',async({page}) => {
-  const ObjectManager=new PageObject1(page);
+  const ObjectManager=new PageObject(page);
   await expect(ObjectManager.homeObj.home_text_header()).toHaveText("Home");
   await ObjectManager.homeObj.product_link().click();
   await ObjectManager.homeObj.add_to_cart_button().click();
