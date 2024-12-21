@@ -9,5 +9,5 @@ export class PageObject{
         this.homeObj = new HomeLocator(page);
         this.landingObj=new LandingLocator(page);
     }
-
+    
 }
