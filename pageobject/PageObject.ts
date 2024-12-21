@@ -1,13 +1,13 @@
 import { Page } from "@playwright/test";
 import { HomeLocator } from "../pages/HomePage";
-import LandingLocator from "../pages/LandingPage";
+import ProductLocator from "../pages/ProductPage";
 
 export class PageObject{
     homeObj:HomeLocator;
-    landingObj:LandingLocator;
+    productObj:ProductLocator;
     constructor(page: Page) {
         this.homeObj = new HomeLocator(page);
-        this.landingObj=new LandingLocator(page);
+        this.productObj=new ProductLocator(page);
     }
     
 }
