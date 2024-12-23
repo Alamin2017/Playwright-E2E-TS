@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test:specific":"npx playwright test --headed --project=chromium 005Product.spec.ts",
-    "test:parallel":"npx playwright test --workers=4"
+    "test:parallel":"npx playwright test --workers=4",
+    "test:all:script":"npx playwright test --headed --workers=1"
   },
   "keywords": [],
   "author": "",

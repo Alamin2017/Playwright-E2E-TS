@@ -54,6 +54,19 @@ module.exports = defineConfig({
     },
     // {
     //   name: 'firefox',
+    
+    //   use: {  
+    //     browserName: 'firefox',  // Specify Firefox browser
+    //     viewport: null,          // Disable viewport
+    //     deviceScaleFactor: undefined, // Not applicable for Firefox but ensures no conflicts
+        
+    //     launchOptions: {
+    //       args: ["--start-maximized"] // For Firefox, you may need additional prefs
+    //     } 
+    //   }, 
+    // },
+    // {
+    //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
     // },
 
