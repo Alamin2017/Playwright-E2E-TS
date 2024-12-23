@@ -2,7 +2,10 @@
   "name": "playrighte2e",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:specific":"npx playwright test --headed --project=chromium 005Product.spec.ts",
+    "test:parallel":"npx playwright test --workers=4"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
