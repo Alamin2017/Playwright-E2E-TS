@@ -40,5 +40,6 @@ test('Login with valid credentials',async({page}) => {
   await page.goto("https://demo.applitools.com/index.html");
   await page.locator("//input[@id='username']").fill(test_data.user.username);
   await page.locator("//input[@id='password']").fill(test_data.user.password);
-  await page.locator("//a[@id='log-in']").click();  
+  await page.locator("//a[@id='log-in']").click();
+  await page.close();  
 });

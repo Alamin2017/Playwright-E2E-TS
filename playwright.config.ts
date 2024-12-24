@@ -21,7 +21,9 @@ module.exports = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'null',
+  reporter: [
+    ['allure-playwright'],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   timeout: 60000,
   use: {
@@ -29,7 +31,7 @@ module.exports = defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     baseURL: '',
-    headless:true,
+    headless:false,
     video:'retain-on-failure',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -44,7 +46,8 @@ module.exports = defineConfig({
       name: 'chromium',
       
       use: {  
-        ...devices['Desktop Chromium'],
+        // ...devices['Desktop Chromium'],
+        browserName: 'chromium', 
         viewport: null,
     
         launchOptions: {
@@ -52,19 +55,19 @@ module.exports = defineConfig({
       } 
       }, 
     },
-    // {
-    //   name: 'firefox',
+    {
+      name: 'firefox',
     
-    //   use: {  
-    //     browserName: 'firefox',  // Specify Firefox browser
-    //     viewport: null,          // Disable viewport
-    //     deviceScaleFactor: undefined, // Not applicable for Firefox but ensures no conflicts
+      use: {  
+        browserName: 'firefox',  // Specify Firefox browser
+        viewport: null,          // Disable viewport
+        deviceScaleFactor: undefined, // Not applicable for Firefox but ensures no conflicts
         
-    //     launchOptions: {
-    //       args: ["--start-maximized"] // For Firefox, you may need additional prefs
-    //     } 
-    //   }, 
-    // },
+        launchOptions: {
+          args: ["--start-maximized"] // For Firefox, you may need additional prefs
+        } 
+      }, 
+    },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
