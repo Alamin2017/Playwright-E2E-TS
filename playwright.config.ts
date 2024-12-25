@@ -38,6 +38,7 @@ module.exports = defineConfig({
     ignoreHTTPSErrors: true,
     actionTimeout: 60000, 
     navigationTimeout: 60000,
+    screenshot: 'only-on-failure', // Automatically capture screenshots on test failure
   },
 
   /* Configure projects for major browsers */
