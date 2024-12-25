@@ -46,7 +46,6 @@ module.exports = defineConfig({
       name: 'chromium',
       
       use: {  
-        // ...devices['Desktop Chromium'],
         browserName: 'chromium', 
         viewport: null,
     
@@ -55,19 +54,31 @@ module.exports = defineConfig({
       } 
       }, 
     },
-    {
-      name: 'firefox',
+    // {
+    //   name: 'firefox',
     
-      use: {  
-        browserName: 'firefox',  // Specify Firefox browser
-        viewport: null,          // Disable viewport
-        deviceScaleFactor: undefined, // Not applicable for Firefox but ensures no conflicts
+    //   use: {  
+    //     browserName: 'firefox',  // Specify Firefox browser
+    //     viewport: null,          // Disable viewport
+    //     deviceScaleFactor: undefined, // Not applicable for Firefox but ensures no conflicts
         
-        launchOptions: {
-          args: ["--start-maximized"] // For Firefox, you may need additional prefs
-        } 
-      }, 
-    },
+    //     launchOptions: {
+    //       args: ["--start-maximized"] // For Firefox, you may need additional prefs
+    //     } 
+    //   }, 
+    // },
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { 
+    //     ...devices['Desktop Edge'], 
+    //     channel: 'msedge',
+    //     launchOptions: {
+    //       args: ['--start-maximized'],
+    //     },
+    //     viewport: null, // Ensure Playwright doesn't override the maximized state with a default viewport size
+    //     deviceScaleFactor: undefined,
+    //   },
+    // },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
@@ -91,7 +102,15 @@ module.exports = defineConfig({
     /* Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    //   use: { 
+    //     ...devices['Desktop Edge'], 
+    //     channel: 'msedge',
+    //     launchOptions: {
+    //       args: ['--start-maximized'],
+    //     },
+    //     viewport: null, // Ensure Playwright doesn't override the maximized state with a default viewport size
+    //     deviceScaleFactor: undefined,
+    //   },
     // },
     // {
     //   name: 'Google Chrome',
