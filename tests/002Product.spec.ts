@@ -28,10 +28,3 @@ test('Product list count :::',async({page}) => {
   await delay(2000);
   await page.close();
 });
-
-
-
-
-
-
-
