@@ -1,0 +1,15 @@
+6
+Product 1: Sauce Labs Backpack
+Product 2: Sauce Labs Bike Light
+Product 3: Sauce Labs Bolt T-Shirt
+Product 4: Sauce Labs Fleece Jacket
+Product 5: Sauce Labs Onesie
+Product 6: Test.allTheThings() T-Shirt (Red)
+[
+  'Sauce Labs Backpack',
+  'Sauce Labs Bike Light',
+  'Sauce Labs Bolt T-Shirt',
+  'Sauce Labs Fleece Jacket',
+  'Sauce Labs Onesie',
+  'Test.allTheThings() T-Shirt (Red)'
+]

@@ -43,3 +43,21 @@ test('Login with valid credentials',async({page}) => {
   await page.locator("//a[@id='log-in']").click();
   await page.close();  
 });
+
+test('data driven test automation', async ({ page }) => {
+    const data = require('../testdata/orange_hrm.json');
+    for (const user_data of data) {
+        await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+        await page.locator("input[placeholder='Username']").fill(user_data.username);
+        await page.locator("input[placeholder='Password']").fill(user_data.password);
+        await page.locator("button:has-text('Login')").click();
+        if (user_data.username === 'Admin' && user_data.password === 'admin123') {
+            await page.locator("i.oxd-icon.bi-caret-down-fill.oxd-userdropdown-icon").click();
+            await page.waitForTimeout(2000); // Wait for the logout option to be visible
+            await page.locator("a:has-text('Logout')").click();
+        } else {
+            const errorMessage = page.locator("p.oxd-text.oxd-text--p.oxd-alert-content-text");
+            await expect(errorMessage).toHaveText(user_data.expected);
+        }
+    }
+});
