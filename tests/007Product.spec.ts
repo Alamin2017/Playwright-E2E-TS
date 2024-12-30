@@ -14,7 +14,7 @@ const users_data=[
 //       await page.getByRole('link', { name: 'Register' }).click();
 //       await page.getByLabel('Male', { exact: true }).check();
 //       await page.getByLabel('Female').check();
-//       await page.getByLabel('First name:').click();
+//       await page.getByLabel('First name:').click(); 
 //       await page.getByLabel('First name:').fill(data[0]);
 //       await page.getByLabel('Last name:').click();
 //       await page.getByLabel('Last name:').fill(data[1]);
