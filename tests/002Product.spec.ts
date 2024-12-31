@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 import { PageObject } from '../pageobject/PageObject';
-
+import * as config from "../config";
 // test.beforeEach(async({page}) => {
 //   await page.goto('https://www.saucedemo.com/');
 // });
@@ -10,7 +10,8 @@ import { PageObject } from '../pageobject/PageObject';
 //   await page.close();
 // });
 test('Product list count :::',async({page}) => {
-  await page.goto('https://www.saucedemo.com/');
+  // await page.goto('https://www.saucedemo.com/');
+  await page.goto(config.PageUrl002);
   const ObjectManager=new PageObject(page);
   await ObjectManager.productObj.username_input_field().fill("standard_user");
   await ObjectManager.productObj.password_input_field().fill("secret_sauce");
