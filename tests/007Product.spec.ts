@@ -61,6 +61,3 @@ test('data driven test automation', async ({ page }) => {
         }
     }
 });
-test('', () => {
-  
-});

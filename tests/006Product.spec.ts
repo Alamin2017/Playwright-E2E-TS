@@ -42,3 +42,21 @@ test('test-4', async ({page}) => {
   await expect.soft(page).toHaveTitle('STORE');
   await expect(page).toHaveURL('https://www.demoblaze.com/index.html');
 });
+
+
+
+test('Handle new tab', async ({ page }) => {
+  // Navigate to the initial page
+  await page.goto("https://freelance-learn-automation.vercel.app/login");
+
+  // Wait for the new page (tab) to open
+  const [newPage] = await Promise.all([
+    page.context().waitForEvent('page'), // Listen on the browser context
+    page.locator("//div[@class='container-child']//a[4]").click(),
+  ]);
+  await newPage.waitForLoadState('load', { timeout: 15000 });
+  await newPage.close();
+
+});
+
+
