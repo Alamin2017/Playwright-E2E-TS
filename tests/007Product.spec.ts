@@ -1,13 +1,13 @@
 import { test, expect, chromium, Page } from '@playwright/test';
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 import { faker } from '@faker-js/faker';
-const users_data=[
-  ["Al-Amin","Alhmed",faker.internet.email()],
-  ["Sumon","Alhmed",faker.internet.email()],
-  ["Rasel","Alhmed",faker.internet.email()],
-  ["Raselz","Alhmedz",faker.internet.email()],
-  ["Rosella","Alameda",faker.internet.email()]
-]
+// const users_data=[
+//   ["Al-Amin","Alhmed",faker.internet.email()],
+//   ["Sumon","Alhmed",faker.internet.email()],
+//   ["Rasel","Alhmed",faker.internet.email()],
+//   ["Raselz","Alhmedz",faker.internet.email()],
+//   ["Rosella","Alameda",faker.internet.email()]
+// ]
 // users_data.forEach(data=>{
 //   test(`create user ${data[0]}`, async ({page}) => {
 //       await page.goto('https://demo.nopcommerce.com/');
@@ -60,4 +60,8 @@ test('data driven test automation', async ({ page }) => {
             await expect(errorMessage).toHaveText(user_data.expected);
         }
     }
+});
+test('test automation for e-commerce product 222',async({page}) => {
+  await page.goto("https://www.arogga.com/");
+  await page.locator("//a[normalize-space()='Veterinary']").click();
 });
