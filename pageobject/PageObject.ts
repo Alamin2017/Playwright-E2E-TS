@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { HomeLocator } from "../pages/HomePage";
 import ProductLocator from "../pages/ProductPage";
-
 export class PageObject{
     homeObj:HomeLocator;
     productObj:ProductLocator;

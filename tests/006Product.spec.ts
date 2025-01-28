@@ -1,4 +1,5 @@
 import { test, expect, chromium, Page } from '@playwright/test';
+import YouTubeLocator from '../pages/YouTube';
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 test('test-1', async ({page}) => {
   await page.goto("https://www.demoblaze.com/index.html");
@@ -48,14 +49,23 @@ test('test-4', async ({page}) => {
 test('Handle new tab', async ({ page }) => {
   // Navigate to the initial page
   await page.goto("https://freelance-learn-automation.vercel.app/login");
-
   // Wait for the new page (tab) to open
-  const [newPage] = await Promise.all([
+  const [newTab] = await Promise.all([
     page.context().waitForEvent('page'), // Listen on the browser context
-    page.locator("//div[@class='container-child']//a[4]").click(),
+    page.locator("//div[@class='social']//a[1]//*[name()='svg']").click(),
   ]);
-  await newPage.waitForLoadState('load', { timeout: 15000 });
-  await newPage.close();
+  await newTab.waitForLoadState('load', { timeout: 15000 });
+  const youtubeObj=new YouTubeLocator(newTab);
+  await youtubeObj.courses_link_locator().click();
+  await delay(3000);
+  await page.bringToFront();
+  await delay(3000);
+  await page.locator("//a[normalize-space()='New user? Signup']").click();
+  await delay(3000);
+  await newTab.bringToFront();
+  await delay(3000);
+  await youtubeObj.courses_link_locator().click();
+  await delay(3000);
 
 });
 
