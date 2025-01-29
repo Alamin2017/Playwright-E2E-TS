@@ -1,5 +1,6 @@
 import { test, expect, chromium, Page } from '@playwright/test';
 import YouTubeLocator from '../pages/YouTube';
+import { PageObject } from '../pageobject/PageObject';
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 test('test-1', async ({page}) => {
   await page.goto("https://www.demoblaze.com/index.html");
@@ -55,8 +56,8 @@ test('Handle new tab', async ({ page }) => {
     page.locator("//div[@class='social']//a[1]//*[name()='svg']").click(),
   ]);
   await newTab.waitForLoadState('load', { timeout: 15000 });
-  const youtubeObj=new YouTubeLocator(newTab);
-  await youtubeObj.courses_link_locator().click();
+  const newTabObject=new PageObject(newTab);
+  await newTabObject.youtubeObj.courses_link_locator().click();
   await delay(3000);
   await page.bringToFront();
   await delay(3000);
@@ -64,7 +65,7 @@ test('Handle new tab', async ({ page }) => {
   await delay(3000);
   await newTab.bringToFront();
   await delay(3000);
-  await youtubeObj.courses_link_locator().click();
+  await newTabObject.youtubeObj.courses_link_locator().click();
   await delay(3000);
 
 });
