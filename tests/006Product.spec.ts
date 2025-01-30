@@ -1,5 +1,4 @@
 import { test, expect, chromium, Page } from '@playwright/test';
-import YouTubeLocator from '../pages/YouTube';
 import { PageObject } from '../pageobject/PageObject';
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 test('test-1', async ({page}) => {
@@ -44,7 +43,6 @@ test('test-4', async ({page}) => {
   await expect.soft(page).toHaveTitle('STORE');
   await expect(page).toHaveURL('https://www.demoblaze.com/index.html');
 });
-
 
 
 test('Handle new tab', async ({ page }) => {

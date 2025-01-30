@@ -7,7 +7,7 @@
     "test:parallel": "npx playwright test --workers=4",
     "test:all:script": "npx playwright test --headed --workers=1",
     "report:generate": "npx allure generate allure-results --clean",
-    "report:open:all": "npx allure open"
+    "report:open": "npx allure open"
   },
   "keywords": [],
   "author": "",
