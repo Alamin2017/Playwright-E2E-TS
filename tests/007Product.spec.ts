@@ -65,3 +65,10 @@ test('test automation for e-commerce product 222',async({page}) => {
   await page.goto("https://www.arogga.com/");
   await page.locator("//a[normalize-space()='Veterinary']").click();
 });
+test('I know', async({page}) => {
+  await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+  await page.locator("input[placeholder='Username']").fill("Admin");
+  await page.locator("input[placeholder='Password']").fill("admin123");
+  await page.locator("button:has-text('Login')").click();
+});
+

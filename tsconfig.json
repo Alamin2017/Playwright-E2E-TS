@@ -10,4 +10,3 @@
     // },
     "include": ["playwright.config.ts", "**/*.ts"]
 }
-  

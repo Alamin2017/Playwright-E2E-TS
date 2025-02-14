@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import * as config from "../config"
+import * as config from "../config";
 const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 import { faker } from '@faker-js/faker';
 const randomEmail = faker.internet.email();
@@ -22,6 +22,7 @@ import { PageObject } from '../pageobject/PageObject';
     await ObjectManager.homeObj.name_input_field().fill("tania");
     await ObjectManager.homeObj.email_address_input_field().fill(randomEmail);
     await ObjectManager.homeObj.sign_up_button().click();
+
   });
 
 
