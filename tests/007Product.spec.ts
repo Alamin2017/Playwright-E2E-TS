@@ -70,5 +70,21 @@ test('I know', async({page}) => {
   await page.locator("input[placeholder='Username']").fill("Admin");
   await page.locator("input[placeholder='Password']").fill("admin123");
   await page.locator("button:has-text('Login')").click();
+  await page.locator("//span[normalize-space()='My Info']").click();
+  await page.locator("//button[normalize-space()='Add']").click();
+  await delay(2000);
+  await page.locator("//input[@type='file']").setInputFiles('C:\\Users\\hp\\Downloads\\Point-Out-Manual-Check.txt');
+  await delay(2000);
+  await page.locator("//textarea[@placeholder='Type comment here']").fill("Test Purpose");
+  await delay(2000);
+  await page.locator("//div[@class='orangehrm-attachment']//button[@type='submit'][normalize-space()='Save']").click();
+  await page.locator("//i[@class='oxd-icon bi-trash']").click();
+  await delay(2000);
+  await page.locator("//button[normalize-space()='Yes, Delete']").click();
+  await delay(2000);
+
+
+
+
 });
 

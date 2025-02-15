@@ -23,7 +23,7 @@ import { PageObject } from '../pageobject/PageObject';
     await ObjectManager.homeObj.email_address_input_field().fill(randomEmail);
     await ObjectManager.homeObj.sign_up_button().click();
 
-  });
+});
 
 
 
