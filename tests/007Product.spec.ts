@@ -36,55 +36,58 @@ import { faker } from '@faker-js/faker';
 //   });
 // });
 const test_data=JSON.parse(JSON.stringify(require("../testdata/testdata.json")));
-test('Login with valid credentials',async({page}) => {
-  await page.goto("https://demo.applitools.com/index.html");
-  await page.locator("//input[@id='username']").fill(test_data.user.username);
-  await page.locator("//input[@id='password']").fill(test_data.user.password);
-  await page.locator("//a[@id='log-in']").click();
-  await page.close();  
-});
-
-test('data driven test automation', async ({ page }) => {
-    const data = require('../testdata/orange_hrm.json');
-    for (const user_data of data) {
-        await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-        await page.locator("input[placeholder='Username']").fill(user_data.username);
-        await page.locator("input[placeholder='Password']").fill(user_data.password);
-        await page.locator("button:has-text('Login')").click();
-        if (user_data.username === 'Admin' && user_data.password === 'admin123') {
-            await page.locator("i.oxd-icon.bi-caret-down-fill.oxd-userdropdown-icon").click();
-            await page.waitForTimeout(2000); // Wait for the logout option to be visible
-            await page.locator("a:has-text('Logout')").click();
-        } else {
-            const errorMessage = page.locator("p.oxd-text.oxd-text--p.oxd-alert-content-text");
-            await expect(errorMessage).toHaveText(user_data.expected);
-        }
-    }
-});
-test('test automation for e-commerce product 222',async({page}) => {
-  await page.goto("https://www.arogga.com/");
-  await page.locator("//a[normalize-space()='Veterinary']").click();
-});
-test('I know', async({page}) => {
-  await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-  await page.locator("input[placeholder='Username']").fill("Admin");
-  await page.locator("input[placeholder='Password']").fill("admin123");
-  await page.locator("button:has-text('Login')").click();
-  await page.locator("//span[normalize-space()='My Info']").click();
-  await page.locator("//button[normalize-space()='Add']").click();
-  await delay(2000);
-  await page.locator("//input[@type='file']").setInputFiles('C:\\Users\\hp\\Downloads\\Point-Out-Manual-Check.txt');
-  await delay(2000);
-  await page.locator("//textarea[@placeholder='Type comment here']").fill("Test Purpose");
-  await delay(2000);
-  await page.locator("//div[@class='orangehrm-attachment']//button[@type='submit'][normalize-space()='Save']").click();
-  await page.locator("//i[@class='oxd-icon bi-trash']").click();
-  await delay(2000);
-  await page.locator("//button[normalize-space()='Yes, Delete']").click();
-  await delay(2000);
 
 
+  test('Login with valid credentials',async({page}) => {
+    await page.goto("https://demo.applitools.com/index.html");
+    await page.locator("//input[@id='username']").fill(test_data.user.username);
+    await page.locator("//input[@id='password']").fill(test_data.user.password);
+    await page.locator("//a[@id='log-in']").click();
+    await page.close();  
+  });
+  
+  test('data driven test automation', async ({ page }) => {
+      const data = require('../testdata/orange_hrm.json');
+      for (const user_data of data) {
+          await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+          await page.locator("input[placeholder='Username']").fill(user_data.username);
+          await page.locator("input[placeholder='Password']").fill(user_data.password);
+          await page.locator("button:has-text('Login')").click();
+          if (user_data.username === 'Admin' && user_data.password === 'admin123') {
+              await page.locator("i.oxd-icon.bi-caret-down-fill.oxd-userdropdown-icon").click();
+              await page.waitForTimeout(2000); // Wait for the logout option to be visible
+              await page.locator("a:has-text('Logout')").click();
+          } else {
+              const errorMessage = page.locator("p.oxd-text.oxd-text--p.oxd-alert-content-text");
+              await expect(errorMessage).toHaveText(user_data.expected);
+          }
+      }
+  });
+  test('test automation for e-commerce product 222',async({page}) => {
+    await page.goto("https://www.arogga.com/");
+    await page.locator("//a[normalize-space()='Veterinary']").click();
+  });
+  test('I know', async({page}) => {
+    await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    await page.locator("input[placeholder='Username']").fill("Admin");
+    await page.locator("input[placeholder='Password']").fill("admin123");
+    await page.locator("button:has-text('Login')").click();
+    await page.locator("//span[normalize-space()='My Info']").click();
+    await page.locator("//button[normalize-space()='Add']").click();
+    await delay(2000);
+    await page.locator("//input[@type='file']").setInputFiles('C:\\Users\\hp\\Downloads\\Point-Out-Manual-Check.txt');
+    await delay(2000);
+    await page.locator("//textarea[@placeholder='Type comment here']").fill("Test Purpose");
+    await delay(2000);
+    await page.locator("//div[@class='orangehrm-attachment']//button[@type='submit'][normalize-space()='Save']").click();
+    await page.locator("//i[@class='oxd-icon bi-trash']").click();
+    await delay(2000);
+    await page.locator("//button[normalize-space()='Yes, Delete']").click();
+    await delay(2000);
+  
+  
+  });
 
 
-});
+
 
