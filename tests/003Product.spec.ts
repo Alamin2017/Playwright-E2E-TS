@@ -45,5 +45,4 @@ test('Add Product E2E Test',async({page}) => {
   await page.locator("//button[@id='submit']").click();
   await delay(2000);
   await expect(page.locator("//p[normalize-space()='Congratulations! Your order has been confirmed!']")).toContainText('Congratulations! Your order has been confirmed!');
-  await page.close();
 });

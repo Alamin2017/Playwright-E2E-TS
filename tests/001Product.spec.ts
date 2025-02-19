@@ -12,6 +12,7 @@ import { PageObject } from '../pageobject/PageObject';
     await page.close();
   });
   test('Add Product E2E Test1',async({page}) => {
+    
     const ObjectManager=new PageObject(page);
     await expect(ObjectManager.homeObj.home_text_header()).toHaveText("Home");
     await ObjectManager.homeObj.product_link().click();
