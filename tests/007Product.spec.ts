@@ -35,6 +35,37 @@ import { faker } from '@faker-js/faker';
 //       await delay(2000);
 //   });
 // });
+
+
+// test('Handle error messages', async ({ page }) => {
+//   const errorMessageLocator = page.locator("//div[contains(@class, 'alert alert-danger mt5 ng-star-inserted')] | //p[contains(text(),'We are unable to access your account due to an inv')]");
+
+//   await expect(errorMessageLocator).toBeVisible();
+
+//   const errorMsg = await errorMessageLocator.innerText();
+//   const trimmedErrorMsg = errorMsg.trim();
+
+//   if (trimmedErrorMsg === "Verification Code is invalid") {
+//     console.log("Test is completed");
+//   } 
+//   else if (trimmedErrorMsg === "We are unable to access your account due to an invalid verification code. Please contact Participant Services at 888.333.6315, option 1.") {
+//     await Unlock_LOCK_Status(page);
+//   } 
+//   else {
+//     console.log("Unknown error message: " + trimmedErrorMsg);
+//   }
+// });
+
+// // Define the Unlock_LOCK_Status function
+// async function Unlock_LOCK_Status(page: any) {
+//   // Add logic to unlock the account status here
+//   console.log("Unlocking account...");
+// }
+
+
+
+
+
 const test_data=JSON.parse(JSON.stringify(require("../testdata/testdata.json")));
 
 

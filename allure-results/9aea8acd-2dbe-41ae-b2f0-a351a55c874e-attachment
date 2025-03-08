@@ -1,0 +1,57 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Add Product E2E Test1
+- Location: D:\PlayrightE2E\tests\001Product.spec.ts:14:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_INTERNET_DISCONNECTED at https://automationexercise.com/
+Call log:
+  - navigating to "https://automationexercise.com/", waiting until "load"
+
+    at D:\PlayrightE2E\tests\001Product.spec.ts:8:16
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 | import * as config from "../config";
+   3 | const delay = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
+   4 | import { faker } from '@faker-js/faker';
+   5 | const randomEmail = faker.internet.email();
+   6 | import { PageObject } from '../pageobject/PageObject';
+   7 |   test.beforeEach(async({page}) => {
+>  8 |     await page.goto(config.PageUrl001);
+     |                ^ Error: page.goto: net::ERR_INTERNET_DISCONNECTED at https://automationexercise.com/
+   9 |   });
+  10 |   test.afterEach(async ({page})=>{
+  11 |     await delay(2000);
+  12 |     await page.close();
+  13 |   });
+  14 |   test('Add Product E2E Test1',async({page}) => {
+  15 |     const ObjectManager=new PageObject(page);
+  16 |     await expect(ObjectManager.homeObj.home_text_header()).toHaveText("Home");
+  17 |     await ObjectManager.homeObj.product_link().click();
+  18 |     await ObjectManager.homeObj.add_to_cart_button().click();
+  19 |     await ObjectManager.homeObj.view_cart_link().click();
+  20 |     await ObjectManager.homeObj.proceed_to_checkout_button().click();
+  21 |     await ObjectManager.homeObj.register_login_button().click();
+  22 |     await ObjectManager.homeObj.name_input_field().fill("tania");
+  23 |     await ObjectManager.homeObj.email_address_input_field().fill(randomEmail);
+  24 |     await ObjectManager.homeObj.sign_up_button().click();
+  25 | });
+  26 |
+  27 |
+  28 |
+  29 |
+  30 |
+  31 |
+```

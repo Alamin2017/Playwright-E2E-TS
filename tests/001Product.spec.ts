@@ -12,7 +12,6 @@ import { PageObject } from '../pageobject/PageObject';
     await page.close();
   });
   test('Add Product E2E Test1',async({page}) => {
-    
     const ObjectManager=new PageObject(page);
     await expect(ObjectManager.homeObj.home_text_header()).toHaveText("Home");
     await ObjectManager.homeObj.product_link().click();
@@ -23,10 +22,7 @@ import { PageObject } from '../pageobject/PageObject';
     await ObjectManager.homeObj.name_input_field().fill("tania");
     await ObjectManager.homeObj.email_address_input_field().fill(randomEmail);
     await ObjectManager.homeObj.sign_up_button().click();
-
 });
-
-
 
 
 
