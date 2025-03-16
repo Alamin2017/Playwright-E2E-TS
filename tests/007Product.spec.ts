@@ -98,7 +98,7 @@ const test_data=JSON.parse(JSON.stringify(require("../testdata/testdata.json")))
     await page.goto("https://www.arogga.com/");
     await page.locator("//a[normalize-space()='Veterinary']").click();
   });
-  test('I know', async({page}) => {
+  test('file upload test automation', async({page}) => {
     await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     await page.locator("input[placeholder='Username']").fill("Admin");
     await page.locator("input[placeholder='Password']").fill("admin123");
