@@ -16,3 +16,4 @@ test('File upload test automation', async ({ page }) => {
   await actions.clickElement(page, DashboardPage.signup_login_locator);
   await actions.textValidation(page, DashboardPage.new_user_signup_text, "New User Signup!");
 });
+

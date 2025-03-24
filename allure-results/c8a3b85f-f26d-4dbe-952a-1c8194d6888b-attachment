@@ -1,0 +1,68 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Playwright Session Example >> Test Case 1: Verify Feature Items
+- Location: D:\PlayrightE2E\tests\009Product.spec.ts:24:7
+
+# Error details
+
+```
+Error: browser._newContextForReuse: Error reading storage state from auth.json:
+ENOENT: no such file or directory, open 'D:\PlayrightE2E\auth.json'
+```
+
+# Test source
+
+```ts
+   1 |
+   2 | import { test } from '@playwright/test';
+   3 |
+   4 |
+   5 | test.beforeEach(async( {page}) => {
+   6 |   await page.goto('https://www.saucedemo.com/');
+   7 |   
+   8 |   // Perform login
+   9 |   await page.fill('[data-test="username"]', 'standard_user');
+  10 |   await page.fill('[data-test="password"]', 'secret_sauce');
+  11 |   await page.click('[data-test="login-button"]');
+  12 |   
+  13 |   // Wait for the URL to confirm successful login
+  14 |   await page.waitForURL(/inventory.html/);
+  15 |
+  16 |   // Save the session (cookies, localStorage, sessionStorage) to 'auth.json'
+  17 |   await page.context().storageState({ path: 'auth.json' });
+  18 |
+  19 | });
+  20 | test.use({ storageState: 'auth.json' });
+  21 |
+  22 | test.describe('Playwright Session Example', () => {
+  23 |
+> 24 |   test('Test Case 1: Verify Feature Items', async ({ page }) => {
+     |       ^ Error: browser._newContextForReuse: Error reading storage state from auth.json:
+  25 |     // Ensure logged-in state by visiting the inventory page
+  26 |     await page.goto('https://www.saucedemo.com/inventory.html');
+  27 |     
+  28 |     // Assert that the Sauce Labs Backpack is visible
+  29 |     expect(page.locator("xpath=//div[normalize-space()='Sauce Labs Backpack']").isVisible());
+  30 |   });
+  31 |
+  32 |   test('Test Case 2: Scroll to Bottom', async ({ page }) => {
+  33 |     // Visit the inventory page to ensure the session is active
+  34 |     await page.goto('https://www.saucedemo.com/inventory.html');
+  35 |     
+  36 |     // Find and scroll to the Sauce Labs Backpack
+  37 |     const backpack = page.locator("xpath=//div[normalize-space()='Sauce Labs Backpack']");
+  38 |     await backpack.scrollIntoViewIfNeeded();
+  39 |     
+  40 |     // Click the backpack
+  41 |     await backpack.click();
+  42 |   });
+  43 |
+  44 | });
+  45 |
+```

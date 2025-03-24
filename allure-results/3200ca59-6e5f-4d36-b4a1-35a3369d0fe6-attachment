@@ -1,0 +1,79 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Playwright Session Example >> Test Case 1: Verify Feature Items
+- Location: D:\PlayrightE2E\tests\008Product.spec.ts:43:7
+
+# Error details
+
+```
+Error: browser._newContextForReuse: Error reading storage state from auth.json:
+ENOENT: no such file or directory, open 'D:\PlayrightE2E\auth.json'
+```
+
+# Test source
+
+```ts
+   1 | // import { Actions } from "../pageobject/Actions";
+   2 | // import { DashboardPage } from "../pages/DashboardPage";
+   3 | // import { test } from '@playwright/test';
+   4 | // const actions=new Actions();
+   5 |
+   6 | // test.beforeEach(async( {page}) => {
+   7 | //   await page.context().clearCookies();
+   8 | //   await page.context().clearPermissions();
+   9 | //   await page.goto("https://automationexercise.com/");
+  10 | // });
+  11 | // test.afterEach(async({page}) => {
+  12 | //   await page.close();
+  13 | // });
+  14 | // test('File upload test automation', async ({ page }) => {
+  15 | //   await actions.elementVisible(page, DashboardPage.logo_locator);
+  16 | //   await actions.clickElement(page, DashboardPage.signup_login_locator);
+  17 | //   await actions.textValidation(page, DashboardPage.new_user_signup_text, "New User Signup!");
+  18 | // });
+  19 |
+  20 | import { test, expect } from '@playwright/test';
+  21 |
+  22 | test.use({ storageState: 'auth.json' }); // Load session if available
+  23 |
+  24 | // Define the login function to use in the test
+  25 | async function login(page) {
+  26 |   await page.goto('https://www.saucedemo.com/');
+  27 |   await page.fill('[data-test="username"]', 'standard_user');
+  28 |   await page.fill('[data-test="password"]', 'secret_sauce');
+  29 |   await page.click('[data-test="login-button"]');
+  30 |   await expect(page).toHaveURL(/inventory.html/);
+  31 | }
+  32 |
+  33 | test.describe('Playwright Session Example', () => {
+  34 |
+  35 |   test.beforeEach(async ({ page, context }) => {
+  36 |     // Check if authentication is already stored
+  37 |     if (!(await context.storageState()).cookies.length) {
+  38 |       await login(page);
+  39 |       await context.storageState({ path: 'auth.json' }); // Save session
+  40 |     }
+  41 |   });
+  42 |
+> 43 |   test('Test Case 1: Verify Feature Items', async ({ page }) => {
+     |       ^ Error: browser._newContextForReuse: Error reading storage state from auth.json:
+  44 |     await page.goto('https://www.saucedemo.com/inventory.html'); // Ensure logged-in state
+  45 |     await expect(page.locator("xpath=//div[normalize-space()='Sauce Labs Backpack']")).toBeVisible();
+  46 |   });
+  47 |
+  48 |   test('Test Case 2: Scroll to Bottom', async ({ page }) => {
+  49 |     await page.goto('https://www.saucedemo.com/inventory.html');
+  50 |     const backpack = page.locator("xpath=//div[normalize-space()='Sauce Labs Backpack']");
+  51 |     await backpack.scrollIntoViewIfNeeded();
+  52 |     await backpack.click();
+  53 |   });
+  54 |
+  55 | });
+  56 |
+```

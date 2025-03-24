@@ -1,0 +1,52 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: Playwright Session Example >> Test Case 2: Scroll to Bottom
+- Location: D:\PlayrightE2E\tests\009Product.spec.ts:19:7
+
+# Error details
+
+```
+Error: locator.scrollIntoViewIfNeeded: Target page, context or browser has been closed
+Call log:
+  - waiting for locator('//div[normalize-space()=\'Sauce Labs Backpack\']')
+
+    at D:\PlayrightE2E\tests\009Product.spec.ts:21:20
+```
+
+# Test source
+
+```ts
+   1 | import { test,expect } from '@playwright/test';
+   2 |
+   3 | test.describe('Playwright Session Example', () => {
+   4 |
+   5 |   test.beforeAll(async( {page}) => {
+   6 |     await page.goto('https://www.saucedemo.com/');
+   7 |     await page.fill('[data-test="username"]', 'standard_user');
+   8 |     await page.fill('[data-test="password"]', 'secret_sauce');
+   9 |     await page.click('[data-test="login-button"]');
+  10 |     await page.waitForURL(/inventory.html/);
+  11 |     await page.context().storageState({ path: 'auth.json' });
+  12 |   });
+  13 |
+  14 |   test('Test Case 1: Verify Feature Items', async ({ page }) => {
+  15 |     const isVisible = await page.locator("xpath=//div[normalize-space()='Sauce Labs Backpack']").isVisible();
+  16 |     expect(isVisible).toBe(true);
+  17 |   });
+  18 |
+  19 |   test('Test Case 2: Scroll to Bottom', async ({ page }) => {
+  20 |     const backpack = page.locator("xpath=//div[normalize-space()='Sauce Labs Backpack']");
+> 21 |     await backpack.scrollIntoViewIfNeeded();
+     |                    ^ Error: locator.scrollIntoViewIfNeeded: Target page, context or browser has been closed
+  22 |     await backpack.click();
+  23 |   });
+  24 |
+  25 | });
+  26 |
+```
